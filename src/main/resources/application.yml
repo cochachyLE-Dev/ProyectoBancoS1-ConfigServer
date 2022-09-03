@@ -1,0 +1,46 @@
+debug: false
+info:
+  app:
+    description: '...'
+    name: ${spring.application.name}
+    version: 1.0.0
+  author: Luis Eduardo Cochachi Chamorro  
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  boot:
+    admin:
+      client:
+        instance:          
+          management-base-url: http://localhost:${server.port}
+          service-base-url: http://localhost:${server.port}
+          metadata:
+            user:
+              name: ${spring.security.user.name}
+              password: ${spring.security.user.password}
+        password: password.
+        url: http://localhost:8760
+        username: admin
+  cloud:
+    config:
+      server:
+        git:
+          refresh-rate: 5
+          uri: file:///C:/ServicesConfigFiles/
+  security:
+    user:
+      name: user
+      password: password.
